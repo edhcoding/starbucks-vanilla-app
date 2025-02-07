@@ -47,3 +47,44 @@ fadeEls.forEach((fadeEl, idx) => {
     opacity: 1,
   });
 });
+
+// 공지사항 수직 슬라이드 효과 JS
+// new Swiper(슬라이드 요소, 옵션) - notice-line 안에 있는 swiper-container를 슬라이드 하겠다는 뜻
+new Swiper(".notice-line .swiper-container", {
+  direction: "vertical",
+  autoplay: true,
+  loop: true,
+});
+
+// 프로모션 슬라이드 효과 JS
+new Swiper(".promotion .swiper-container", {
+  // direction: "horizontal", // 기본값
+  slidesPerView: 3,
+  spaceBetween: 10,
+  centeredSlides: true,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+  },
+  pagination: {
+    el: ".promotion .swiper-pagination", // 페이지 번호 요소 선택자
+    clickable: true,
+  },
+  navigation: {
+    prevEl: ".promotion .swiper-prev",
+    nextEl: ".promotion .swiper-next",
+  },
+});
+
+const promotionEl = document.querySelector(".promotion");
+const promotionToggleBtn = document.querySelector(".toggle-promotion");
+let isHidePromotion = false;
+
+promotionToggleBtn.addEventListener("click", () => {
+  isHidePromotion = !isHidePromotion;
+  if (isHidePromotion) {
+    promotionEl.classList.add("hide");
+  } else {
+    promotionEl.classList.remove("hide");
+  }
+});
