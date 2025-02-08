@@ -110,3 +110,19 @@ function floatingObject(selector, delay, size) {
 floatingObject(".floating1", 1, 15);
 floatingObject(".floating2", 0.5, 15);
 floatingObject(".floating3", 1.5, 20);
+
+// 스크롤 효과 JS
+const spyEls = document.querySelectorAll("section.scroll-spy");
+spyEls.forEach((spyEl, idx) => {
+  // Scene메서드는 특정한 요소를 감시하는 옵션을 지정해주는 메서드임
+  // setClassToggle메서드는 특정 요소에 클래스를 추가하거나 제거하는 메서드임
+  // addTo메서드는 특정 요소에 특정 효과를 적용하는 메서드임, 컨트롤러라는 개념의 내용을 추가하기위함
+  new ScrollMagic.Scene({
+    triggerElement: spyEl, // 보여짐의 여부를 감시할 요소 지정
+    // 뷰포트 제일위를 0, 아래를 1로 뒀을때
+    triggerHook: 0.8, // 보여짐의 여부를 감시할 요소의 몇% 지점에 감시할지 지정
+    // 결론: 뷰포트의 0.8지점에 걸리면 트리거 활성화
+  })
+    .setClassToggle(spyEl, "show") // 첫 번째 인수는 어떠한 클래스를 토글 할 요소, 두 번째 인수는 토글할 클래스 이름 지정
+    .addTo(new ScrollMagic.Controller()); // ScrollMagic에서 기본적으로 추가한 옵션들을 내부의 컨트롤러의 내용을 할당해서 실제로 동작할 수 있는 구조를 만들어 주는 용도로 사용, 컨트롤러 객체 지정
+});

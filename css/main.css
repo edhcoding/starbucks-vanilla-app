@@ -78,9 +78,11 @@ img {
   transition: 1s;
   opacity: 0;
 }
+/* 왼쪽에서 오른쪽으로 이동 */
 .back-to-position.to-right {
   transform: translateX(-150px);
 }
+/* 오른쪽에서 왼쪽으로 이동 */
 .back-to-position.to-left {
   transform: translateX(150px);
 }
