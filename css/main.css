@@ -642,7 +642,7 @@ header .badges .badge {
 .pick-your-favorite {
   background-image: url("../images/favorite_bg.jpg");
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed; /* 배경 이미지 고정 */
   background-position: center;
   background-size: cover;
 }
