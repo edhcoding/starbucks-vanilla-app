@@ -680,7 +680,7 @@ header .badges .badge {
 .reserve-store .medal {
   width: 334px;
   height: 334px;
-  perspective: 600px;
+  perspective: 600px; /* 3D 효과 적용 - 원근법 */
 }
 .reserve-store .medal .front,
 .reserve-store .medal .back {
@@ -688,7 +688,7 @@ header .badges .badge {
   width: inherit;
   height: inherit;
   transition: 1s;
-  backface-visibility: hidden;
+  backface-visibility: hidden; /* 뒷면 숨김 */
 }
 .reserve-store .medal .front {
   transform: rotateY(0deg);
