@@ -29,15 +29,31 @@ window.addEventListener(
         opacity: 0,
         display: "none",
       });
+      // 페이지 상단 이동 버튼 보이기
+      gsap.to("#to-top", 0.2, {
+        x: 0,
+      });
     } else {
       // 배지 보이기
       gsap.to(badgeEl, 0.6, {
         opacity: 1,
         display: "block",
       });
+      // 페이지 상단 이동 버튼 숨김
+      gsap.to("#to-top", 0.2, {
+        x: 100,
+      });
     }
   }, 300)
 );
+
+// 페이지 상단 이동 효과 JS
+const toTopEl = document.querySelector("#to-top");
+toTopEl.addEventListener("click", () => {
+  gsap.to(window, 0.7, {
+    scrollTo: 0,
+  });
+});
 
 // Fade In 효과 JS
 const fadeEls = document.querySelectorAll(".visual .fade-in");
@@ -126,3 +142,19 @@ spyEls.forEach((spyEl, idx) => {
     .setClassToggle(spyEl, "show") // 첫 번째 인수는 어떠한 클래스를 토글 할 요소, 두 번째 인수는 토글할 클래스 이름 지정
     .addTo(new ScrollMagic.Controller()); // ScrollMagic에서 기본적으로 추가한 옵션들을 내부의 컨트롤러의 내용을 할당해서 실제로 동작할 수 있는 구조를 만들어 주는 용도로 사용, 컨트롤러 객체 지정
 });
+
+// AWARDS 슬라이드 효과 JS
+new Swiper(".awards .swiper-container", {
+  autoplay: true,
+  loop: true,
+  slidesPerView: 5,
+  spaceBetween: 30,
+  navigation: {
+    prevEl: ".awards .swiper-prev",
+    nextEl: ".awards .swiper-next",
+  },
+});
+
+// 자동 년도 계산
+const thisYear = document.querySelector(".this-year");
+thisYear.textContent = new Date().getFullYear();
