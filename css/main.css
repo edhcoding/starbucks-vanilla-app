@@ -585,6 +585,11 @@ header .badges .badge {
   top: 350px;
   left: 150px;
 }
+.youtube .floating3 {
+  position: absolute;
+  bottom: -200px;
+  right: 0;
+}
 
 /*SEASON PRODUCT*/
 .season-product {

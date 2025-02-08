@@ -88,3 +88,25 @@ promotionToggleBtn.addEventListener("click", () => {
     promotionEl.classList.remove("hide");
   }
 });
+
+// youtube 이미지 플로팅 효과 JS
+// 범위 랜덤 함수(소수점 2자리까지)
+function random(min, max) {
+  return parseFloat((Math.random() * (max - min) + min).toFixed(2));
+}
+
+function floatingObject(selector, delay, size) {
+  // gsap.to(요소, 시간, 옵션)
+  gsap.to(selector, random(1.5, 2.5), {
+    y: size,
+    repeat: -1, // 무한 반복
+    yoyo: true, // 왕복 반복 - 다시 뒤로 재생
+    // gsap easing 속성
+    ease: Power1.easeInOut, // ease 함수 - 타이밍 함수
+    delay: random(0, delay),
+  });
+}
+
+floatingObject(".floating1", 1, 15);
+floatingObject(".floating2", 0.5, 15);
+floatingObject(".floating3", 1.5, 20);
