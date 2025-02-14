@@ -31,7 +31,12 @@ a {
 }
 img {
   display: block;
+  /* 이미지 선택 방지 */
   user-select: none;
+  /* 이미지 클릭 후 드래그 방지 */
+  /* -webkit- 을 영어로는 vendor prefix, 한글로는 공급업체 접두사라고 함. caniuse에서 보면 user-drag 속성은 safari에서만 지원하는 속성임. 그렇기 때문에 모든 브라우저에서 사용할 수 있도록 작성해야 함. */
+  /* CSS3 표준으로 확정되기 이전 또는 브라우저 개발사가 실험적으로 제공하는 기능을 사용하기 위해서는 벤더 프리픽스(Vendor Prefix)를 사용해야함 */
+  /* 브라우저별 벤더 프리픽스 종류가 많음, -webkit-, -moz-, -ms-, -o- 이중 ms는 Edge, Internet Explorer인데 Internet Explorer는 서비스 종료했고 Edge도 -webkit- 벤더 프리픽스를 사용함. 결국 거의 대부분 -webkit- 벤터 프리픽스만 사용함 */
   -webkit-user-drag: none;
 }
 p {
@@ -895,5 +900,150 @@ nav .menu li.active:hover a {
   }
   nav.menuing .menu-toggler::after {
     transform: rotate(40deg);
+  }
+}
+
+/* Main wrapper */
+main {
+  overflow-x: hidden;
+}
+
+/* Hero */
+.hero {
+  background-color: var(--color-section);
+}
+.hero .inner {
+  padding-bottom: 110px;
+}
+.hero h1 {
+  width: 221px;
+  height: 91px;
+  background-image: url("../images/hero_ipad_text.png");
+  position: absolute;
+  transform: translate(624px, 235px);
+  z-index: 1;
+}
+.hero .figures {
+  height: 808px;
+}
+.hero figure {
+  transform: translate(74px, -64px);
+}
+.hero figcaption .caption-camera {
+  width: 120px;
+  height: 84px;
+  background-image: url("../images/hero_ipad_caption_camera.png");
+  transform: translate(43px, 580px);
+}
+.hero figcaption .caption-chip {
+  width: 95px;
+  height: 43px;
+  background-image: url("../images/hero_ipad_caption_chip.png");
+  transform: translate(589px, 510px);
+}
+.hero figcaption .caption-storage {
+  width: 80px;
+  height: 43px;
+  background-image: url("../images/hero_ipad_caption_storage.png");
+  transform: translate(627px, 631px);
+}
+.hero h2 {
+  width: 738px;
+  height: 145px;
+  margin: 0 auto;
+  background-image: url("../images/hero_headline.png");
+}
+.hero p.pricing {
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+.hero p.description {
+  width: 88%;
+  margin: 18px auto 0;
+  font-size: 19px;
+  text-align: center;
+}
+.hero .links {
+  margin-top: 30px;
+}
+
+@media (max-width: 1000px) {
+  .hero .inner {
+    padding-bottom: 80px;
+  }
+  .hero h1 {
+    width: 166px;
+    height: 68px;
+    transform: translate(448px, 165px);
+  }
+  .hero .figures {
+    height: 584px;
+    margin-bottom: 14px;
+  }
+  .hero figure {
+    transform: translate(70px, -24px);
+  }
+  .hero figure img {
+    width: 540px;
+  }
+  .hero figcaption .caption-camera {
+    transform: scale(0.8) translate(-9px, 524px);
+  }
+  .hero figcaption .caption-chip {
+    transform: scale(0.8) translate(510px, 422px);
+  }
+  .hero figcaption .caption-storage {
+    transform: scale(0.8) translate(556px, 556px);
+  }
+  .hero h2 {
+    width: 515px;
+    height: 95px;
+  }
+}
+
+@media (max-width: 740px) {
+  .hero .inner {
+    padding-top: 40px;
+  }
+  .hero h1 {
+    margin: 0 auto 40px;
+    position: static;
+    transform: none;
+  }
+  .hero .figures {
+    height: auto;
+    margin-bottom: 100px;
+  }
+  .hero figure {
+    transform: none;
+  }
+  .hero figure img {
+    width: 337px;
+  }
+  .hero figcaption .caption-camera {
+    width: 180px;
+    height: 37px;
+    background-image: url("../images/hero_ipad_caption_camera_mobile.png");
+    transform: scale(1) translate(21px, 368px);
+  }
+  .hero figcaption .caption-chip {
+    transform: scale(0.8) translate(248px, 42px);
+  }
+  .hero figcaption .caption-storage {
+    transform: scale(0.8) translate(288px, 168px);
+  }
+  .hero h2 {
+    width: 295px;
+    height: 185px;
+    background-image: url("../images/hero_headline_mobile.png");
+  }
+  .hero p.pricing {
+    font-size: 20px;
+  }
+  .hero p.description {
+    width: auto;
+    font-size: 17px;
   }
 }
