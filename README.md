@@ -12,3 +12,5 @@
 - 웹 접근성 향상 (배경 이미지 + 대체 택스트) (text-indent: -9999px)
 - CSS 드롭다운 상단 화살표 구현 (가상 선택자, transform-origin, rotate, overflow)
 - visibility VS display 애니메이션 적용 차이점 이해 [🔗](https://edongdong.tistory.com/357)
+- 드롭다운, 검색창 애니메이션 CSS + JS 구현
+![화면 기록 2025-02-14 오후 2 44 58](https://github.com/user-attachments/assets/cc61be6a-5a93-4cef-a08c-141e216d3ff1)
