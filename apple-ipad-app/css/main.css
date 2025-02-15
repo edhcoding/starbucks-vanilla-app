@@ -1491,6 +1491,104 @@ main {
   }
 }
 
+/* Wireless */
+.wireless {
+  margin-top: 202px;
+}
+/* Wireless / Facetime */
+.wireless .facetime h1 {
+  width: 730px;
+  height: 330px;
+  background-image: url("../images/wireless_headline.png");
+  transform: translate(104px, 0);
+}
+.wireless .facetime .figures {
+  height: 773px;
+}
+.wireless .facetime figure {
+  transform: translate(-68px, 0);
+}
+.wireless .facetime figcaption {
+  width: 139px;
+  height: 46px;
+  background-image: url("../images/wireless_facetime_caption.png");
+  transform: translate(843px, -49px);
+}
+/* Wireless / Files */
+.wireless .files figure {
+  transform: translate(34px, -34px);
+}
+.wireless .files figcaption {
+  width: 127px;
+  height: 46px;
+  background-image: url("../images/wireless_files_caption.png");
+  transform: translate(96px, 639px);
+}
+
+@media (max-width: 1000px) {
+  .wireless {
+    margin-top: 140px;
+  }
+  .wireless .facetime h1 {
+    width: 450px;
+    height: 200px;
+    transform: translate(70px, 0);
+  }
+  .wireless .facetime .figures {
+    height: 530px;
+  }
+  .wireless .facetime figure {
+    transform: translate(0, 0);
+  }
+  .wireless .facetime figure img {
+    width: 769px;
+  }
+  .wireless .facetime figcaption {
+    transform: scale(0.8) translate(670px, -60px);
+  }
+  .wireless .files figure img {
+    width: 676px;
+  }
+  .wireless .files figcaption {
+    transform: scale(0.8) translate(43px, 520px);
+  }
+}
+
+@media (max-width: 740px) {
+  .wireless {
+    margin-top: 120px;
+  }
+  .wireless .facetime h1 {
+    width: 312px;
+    height: 223px;
+    background-image: url("../images/wireless_headline_mobile.png");
+    margin: 0 auto;
+    transform: none;
+  }
+  .wireless .facetime .figures {
+    height: auto;
+    margin-top: 64px;
+  }
+  .wireless .facetime figure img {
+    width: 490px;
+  }
+  .wireless .facetime figcaption {
+    transform: scale(0.8) translate(120px, -45px);
+  }
+  .wireless .files .figures {
+    margin-top: 30px;
+  }
+  .wireless .files figure {
+    transform: translate(20px, 0);
+  }
+  .wireless .files figure img {
+    width: 450px;
+  }
+  .wireless .files figcaption {
+    transform: scale(0.8) translate(73px, 355px);
+  }
+}
+
 @keyframes sprite-icon {
   /* 1~10 */
   0.00% {
