@@ -1,3 +1,5 @@
+import ipads from "../data/ipads.js";
+
 // 장바구니 드롭다운
 const basketStarterEl = document.querySelector("header .basket-starter");
 const basketEl = basketStarterEl.querySelector(".basket");
@@ -110,4 +112,36 @@ pauseBtn.addEventListener("click", () => {
   video.pause();
   playBtn.classList.remove("hide");
   pauseBtn.classList.add("hide");
+});
+
+// Compare 섹션 데이터 추가
+const itemsEl = document.querySelector("section.compare .items");
+
+ipads.forEach((ipad) => {
+  const itemEl = document.createElement("div");
+  itemEl.classList.add("item");
+
+  let colorList = "";
+  ipad.colors.forEach((color) => {
+    colorList += /* html */ `<li style="background-color: ${color};"></li>`;
+  });
+
+  // itemEl.textContent = ipad.name; - 여기에는 태그가 들어가지 않음
+  itemEl.innerHTML = /* html */ `
+    <div class="thumbnail">
+      <img src="${ipad.thumbnail}" alt="${ipad.name}" />
+    </div>
+    <ul class="colors">
+      ${colorList}
+    </ul>
+    <h3 class="name">${ipad.name}</h3>
+    <p class="tagline">${ipad.tagline}</p>
+    <p class="price">₩${ipad.price.toLocaleString("en-US")}부터</p>
+    <button class="btn">구입하기</button>
+    <a href="${ipad.url}" class="link">더 알아보기</a>
+  `;
+
+  // append - 컨텐츠를 선택된 요소 내부의 끝 부분에 추가 - 반대 prepend()
+  // after - 선택한 요소 뒤에 컨텐츠 삽입(형제 요소라고 생각) - 반대 before()
+  itemsEl.append(itemEl);
 });
