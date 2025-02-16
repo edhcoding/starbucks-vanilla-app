@@ -1,3 +1,5 @@
+/* @media 타입 and (기능) { 속성: 값; } ex) @media (max-width: 1000px) {}
+<link rel="stylesheet" href="./css/main.small.css" media="(max-width: 1000px)" /> @media 작성하지 않고도 적용 가능 */
 html {
   --color-white: #fff;
   --color-black: #000;
@@ -42,7 +44,7 @@ img {
 p {
   line-height: 1.6;
 }
-/* For footnote */
+/* For footnote - 주의사항 각주 */
 sup {
   margin-right: 6px;
   font-size: 0.7em;
@@ -2324,6 +2326,238 @@ main {
   }
   .compare a.link {
     margin-top: 0;
+  }
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-section);
+}
+/* Footer / Buy Info */
+footer .buy-info {
+  padding: 76px 0;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  text-align: center;
+}
+footer .buy-info .icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 10px;
+}
+footer .buy-info h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+footer .buy-info p {
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+footer .buy-info a.link {
+  font-size: 14px;
+}
+/* Footer / Warning */
+footer .warning {
+  padding: 18px 0 10px;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+footer .warning ol {
+  list-style: decimal;
+  padding-left: 16px;
+}
+footer .warning li {
+  margin-bottom: 10px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--color-font-darkgray);
+}
+/* Footer / Breadcrumbs - Bread Crumb는 사이트 이동경로를 뜻함 */
+footer .breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 20px 0;
+}
+footer .breadcrumbs a {
+  font-size: 12px;
+  color: var(--color-font-darkgray);
+  position: relative;
+}
+footer .breadcrumbs a.apple-logo {
+  width: 16px;
+  height: 16px;
+  background-image: url("../images/path_apple.svg");
+}
+footer .breadcrumbs a:hover {
+  text-decoration: underline;
+}
+footer .breadcrumbs a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -18px;
+  margin: auto;
+  width: 8px;
+  height: 18px;
+  background-image: url("../images/path_div.svg");
+}
+footer .breadcrumbs a:last-child:after {
+  display: none;
+}
+/* Footer / Navigations */
+footer .navigations {
+  margin-bottom: 40px;
+  height: 344px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+footer .navigations .map {
+  margin-top: 24px;
+}
+footer .navigations .map:nth-child(6) {
+  padding-bottom: 100px;
+}
+footer .navigations .map h3 {
+  font-size: 12px;
+  font-weight: 600;
+}
+footer .navigations .map h3 .icon {
+  display: none;
+}
+footer .navigations .map li {
+  margin-top: 12px;
+  font-size: 12px;
+}
+footer .navigations .map li a {
+  color: var(--color-font-darkgray);
+}
+footer .navigations .map li a:hover {
+  text-decoration: underline;
+}
+footer .how-to-shop {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-font-darkgray);
+}
+footer .how-to-shop a {
+  color: var(--color-link);
+}
+footer .how-to-shop a:hover {
+  text-decoration: underline;
+}
+footer .legal {
+  margin-top: 10px;
+  padding: 10px 0 40px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  gap: 50px;
+  font-size: 12px;
+  color: var(--color-font-darkgray);
+}
+footer .legal ul {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+}
+footer .legal ul li {
+  position: relative;
+}
+footer .legal ul li::after {
+  content: "|";
+  position: absolute;
+  right: -11px;
+  /* 글자가 아닌 라인 색상을 의미! */
+  color: var(--color-border);
+}
+footer .legal ul li:last-child::after {
+  display: none;
+}
+footer .legal ul li:hover a {
+  text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+  footer .inner {
+    max-width: none;
+  }
+  footer .legal {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0 30px;
+  }
+  footer .legal .locale {
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 740px) {
+  footer .buy-info {
+    flex-wrap: wrap;
+  }
+  footer .navigations {
+    height: auto;
+    display: block;
+  }
+  footer .navigations .map {
+    margin-top: 0;
+    border-bottom: 1px solid var(--color-border);
+    cursor: pointer;
+    user-select: none;
+  }
+  footer .navigations .map:nth-child(6) {
+    padding-bottom: 0;
+  }
+  footer .navigations .map h3 {
+    padding: 12px 0;
+    font-weight: 400;
+    display: flex;
+  }
+  footer .navigations .map:hover h3 {
+    font-weight: 600;
+  }
+  footer .navigations .map h3 .text {
+    flex-grow: 1;
+  }
+  footer .navigations .map h3 .icon {
+    display: block;
+    padding: 0 10px;
+    color: var(--color-font-darkgray);
+  }
+  footer .navigations .map ul {
+    height: 0;
+    overflow: hidden;
+    transition: transform 0.6s, opacity 0.4s;
+    transform: translate(0, -20px);
+    opacity: 0;
+  }
+  footer .navigations .map li {
+    margin-top: 0;
+  }
+  footer .navigations .map li a {
+    display: block;
+    padding: 6px 12px;
+  }
+  /*Active accordion menu*/
+  footer .navigations .map.active ul {
+    height: auto;
+    overflow: visible;
+    padding: 6px 0 18px;
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  footer .navigations .map.active h3 .icon {
+    transform: scale(1.2) rotate(45deg);
+  }
+  footer .legal ul {
+    flex-wrap: wrap;
+    gap: 6px 21px;
   }
 }
 

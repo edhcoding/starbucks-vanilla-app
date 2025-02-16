@@ -1,5 +1,5 @@
 import ipads from "../data/ipads.js";
-
+import navigations from "../data/navigations.js";
 // 장바구니 드롭다운
 const basketStarterEl = document.querySelector("header .basket-starter");
 const basketEl = basketStarterEl.querySelector(".basket");
@@ -144,4 +144,43 @@ ipads.forEach((ipad) => {
   // append - 컨텐츠를 선택된 요소 내부의 끝 부분에 추가 - 반대 prepend()
   // after - 선택한 요소 뒤에 컨텐츠 삽입(형제 요소라고 생각) - 반대 before()
   itemsEl.append(itemEl);
+});
+
+// Footer - 내비게이션 맵 랜더링
+const navigationsEl = document.querySelector("footer .navigations");
+navigations.forEach((navigation) => {
+  const mapEl = document.createElement("div");
+  mapEl.classList.add("map");
+
+  let mapList = "";
+  navigation.maps.forEach((map) => {
+    mapList += /* html */ `<li>
+      <a href="${map.url}">${map.name}</a>
+    </li>`;
+  });
+
+  mapEl.innerHTML = /* html */ `
+    <h3>
+      <span class="text">${navigation.title}</span>
+      <span class="icon">+</span>
+    </h3>
+    <ul>
+      ${mapList}
+    </ul>
+  `;
+
+  navigationsEl.append(mapEl);
+});
+
+// 올해 연도
+const thisYearEl = document.querySelector(".this-year");
+thisYearEl.textContent = new Date().getFullYear();
+
+// 푸터 내비게이션 맵 아코디언
+const mapEls = [...document.querySelectorAll("footer .navigations .map")];
+mapEls.forEach((el) => {
+  const h3El = el.querySelector("h3");
+  h3El.addEventListener("click", () => {
+    el.classList.toggle("active");
+  });
 });
