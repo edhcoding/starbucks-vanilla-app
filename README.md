@@ -2,13 +2,13 @@
 - 프로젝트를 통해 학습한 내용 기록
 
 ## 주요 구현
-### starvucks-vanilla-app
+### starvucks-vanilla-app [🔗](https://flamboyant-lumiere-482a1e.netlify.app/)
 - 스크롤 기반 애니메이션 구현 (CSS + JS)
 - 3D 애니메이션 효과 (backface-visibility, perspective, rotate) [🔗](https://edongdong.tistory.com/352)
 - 페이지 상동 이동 구현 (window.scrollTo())
 - 랜덤 딜레이 애니메이션 구현 (Math.random())
 
-### apple-ipad-app
+### apple-ipad-app [🔗](https://transcendent-naiad-733465.netlify.app)
 - 반응형 이해 @media
 - 웹 접근성 향상 (배경 이미지 + 대체 택스트) (text-indent: -9999px)
 - visibility VS display 애니메이션 적용 차이점 이해 [🔗](https://edongdong.tistory.com/357)
