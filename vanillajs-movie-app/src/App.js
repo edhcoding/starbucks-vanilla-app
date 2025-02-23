@@ -1,4 +1,5 @@
 import { Component } from "./core/donghyeok";
+import FruitItem from "./components/FruitItem";
 
 export default class App extends Component {
   // constructor, super 함수 모두 내용이 비어져 있으면 생략 가능
@@ -32,17 +33,23 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.fruits);
-
     this.el.innerHTML = /* html */ `
       <h1>Fruits</h1>
-      <ul>
-        ${this.state.fruits
-          .filter((fruit) => fruit.price < 3000)
-          .map((fruit) => `<li>${fruit.name}</li>`)
-          .join("")}
-        <!-- li 태그는 백틱 기호를 사용해서 문자데이터 이므로 join 메서드로 합쳐줌  -->
-      </ul>
+      <ul></ul>
     `;
+
+    const ulEl = this.el.querySelector("ul");
+    ulEl.append(
+      ...this.state.fruits.map(
+        (fruit) =>
+          new FruitItem({
+            props: {
+              name: fruit.name,
+              price: fruit.price,
+            },
+          }).el
+      )
+      // 여기까지 배열데이터를 반환하게 될 텐데 append 메서드는 배열데이터를 받을 수 없음 그렇기 때문에 spread 연산자를 사용해서 배열데이터를 풀어서 넣어줌
+    );
   }
 }
