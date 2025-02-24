@@ -5,6 +5,7 @@ const { APIKEY } = process.env;
 const store = new Store({
   searchText: "",
   page: 1,
+  movie: {},
   movies: [],
   pageMax: 1,
   loading: false,
@@ -40,8 +41,20 @@ export const searchMovies = async (page) => {
       store.state.message = Error;
     }
   } catch (error) {
-    console.log("Data fetching error: ", error);
+    console.log("searchMovies function error: ", error);
   } finally {
     store.state.loading = false;
+  }
+};
+
+export const getMovieDetails = async (id) => {
+  try {
+    // plot 파라미터에는 short, full이 있는데 더 자세한 정보를 보기 위해 full로 설정
+    const res = await fetch(
+      `https://omdbapi.com?apikey=${APIKEY}&i=${id}&plot=full`
+    );
+    store.state.movie = await res.json();
+  } catch (error) {
+    console.log("getMovieDetails function error: ", error);
   }
 };
