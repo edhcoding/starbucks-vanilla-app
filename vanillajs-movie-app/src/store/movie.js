@@ -28,9 +28,16 @@ export const searchMovies = async (page) => {
     // https://www.omdbapi.com/
     // OBDb API는 http로 알려주고 있어서 localhost에서 개발할때는 문제가 없지만, 나중에 실제 vercel을 통해 배포하게되면 https로 시작하게되는데
     // https => http로 더 보안이 낮은 곳으로 데이터를 요청하는 것은 브라우저마다 허용되지 않을 수 있음
-    const res = await fetch(
-      `https://www.omdbapi.com?apikey=${APIKEY}&s=${store.state.searchText}&page=${page}`
-    );
+    // const res = await fetch(
+    //   `https://www.omdbapi.com?apikey=${APIKEY}&s=${store.state.searchText}&page=${page}`
+    // );
+    const res = await fetch("/api/movie", {
+      method: "POST",
+      body: JSON.stringify({
+        title: store.state.searchText,
+        page,
+      }),
+    });
     const { Search, totalResults, Response, Error } = await res.json();
 
     if (Response === "True") {
@@ -50,9 +57,15 @@ export const searchMovies = async (page) => {
 export const getMovieDetails = async (id) => {
   try {
     // plot 파라미터에는 short, full이 있는데 더 자세한 정보를 보기 위해 full로 설정
-    const res = await fetch(
-      `https://omdbapi.com?apikey=${APIKEY}&i=${id}&plot=full`
-    );
+    // const res = await fetch(
+    //   `https://omdbapi.com?apikey=${APIKEY}&i=${id}&plot=full`
+    // );
+    const res = fetch("/api/movie", {
+      method: "POST",
+      body: JSON.stringify({
+        id,
+      }),
+    });
     store.state.movie = await res.json();
   } catch (error) {
     console.log("getMovieDetails function error: ", error);
