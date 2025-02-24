@@ -7,11 +7,13 @@ const store = new Store({
   page: 1,
   movies: [],
   pageMax: 1,
+  loading: false,
 });
 
 export default store;
 
 export const searchMovies = async (page) => {
+  store.state.loading = true;
   store.state.page = page;
 
   // 검색을 통해 새로운 영화 목록을 불러오면 기존 영화 목록을 초기화
@@ -28,4 +30,5 @@ export const searchMovies = async (page) => {
   store.state.movies = [...store.state.movies, ...Search];
   // totalResults는 문자 데이터이기 때문에 숫자로 변환
   store.state.pageMax = Math.ceil(Number(totalResults) / 10);
+  store.state.loading = false;
 };
