@@ -21,9 +21,8 @@ export class Component {
 // 페이지 렌더링!
 function routeRender(routes) {
   // 접속할 때 해시 모드가 아니면(해시가 없으면) /#/로 리다이렉트!
-  if (!location.hash) {
-    history.replaceState(null, "", "/#/"); // (상태, 제목, 주소)
-  }
+  if (!location.hash) history.replaceState(null, "", "/#/"); // (상태, 제목, 주소)
+
   const routerView = document.querySelector("router-view");
   const [hash, queryString = ""] = location.hash.split("?"); // 물음표를 기준으로 해시 정보와 쿼리스트링을 구분
 
