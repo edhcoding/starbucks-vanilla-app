@@ -32,9 +32,9 @@ export default class MovieList extends Component {
       )
     );
 
-    const loaderEl = this.el.querySelector(".the-loader");
+    const loaderEl = this.el.querySelector(".the-loader"); // 아래에서 발생하는 loaderEl의 오류때문에 as HTMLDivElement 이와같은 타입 단언을 사용하게 되면 the-loader의 스펠링이 틀려도 타입 오류가 안나오게됨
     movieStore.state.loading
-      ? loaderEl.classList.remove("hide")
-      : loaderEl.classList.add("hide");
+      ? loaderEl?.classList.remove("hide")
+      : loaderEl?.classList.add("hide");
   }
 }
