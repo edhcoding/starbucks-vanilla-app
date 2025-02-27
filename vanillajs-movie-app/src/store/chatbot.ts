@@ -1,18 +1,20 @@
 import { Store } from "../core/donghyeok";
+import OpenAI from "openai";
 
 interface State {
   chatText: string;
-  messages: Message[];
+  messages: OpenAI.ChatCompletionMessageParam[];
   loading: boolean;
 }
 
-interface Message {
-  role: "assistant" | "user";
-  content: string;
-}
+// Message 타입은 openai 페키지에서 제공하는 타입으로 변경해줄거임
+// interface Message {
+//   role: "assistant" | "user";
+//   content: string;
+// }
 
 // role - assistant(챗봇), user(사용자)
-const defaultMessages: Message[] = [
+const defaultMessages: OpenAI.ChatCompletionMessageParam[] = [
   {
     role: "assistant",
     content: "좋아하는 영화 장르나 제목을 알려주세요.",

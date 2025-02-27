@@ -37,17 +37,18 @@ body {
 
 /* Button */
 .btn {
+  height: 50px;
   padding: 0 20px;
   border: none;
+  border-radius: 4px;
   outline: none;
-  height: 50px;
-  background-color: var(--color-area);
   font-size: 14px;
   font-weight: 700;
   color: var(--color-white);
-  transition: 0.3s;
+  background-color: var(--color-area);
   cursor: pointer;
-  border-radius: 4px;
+  transition: 0.3s;
+  user-select: none;
 }
 .btn:hover {
   background-color: var(--color-hover);
@@ -60,10 +61,18 @@ body {
   background-color: var(--color-hover);
   color: var(--color-white);
 }
+.btn-circle {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* Default Loading Animation */
 .the-loader {
-  margin: 30px auto;
   border: 4px solid var(--color-primary);
   /* border-top 색상을 투명하게 적용 */
   border-top-color: transparent;
@@ -258,6 +267,9 @@ footer a:hover {
   justify-content: center;
   flex-wrap: wrap;
 }
+.movie-list .the-loader {
+  margin: 30px auto;
+}
 
 /* components/MovieItem */
 .movies .movie {
@@ -405,4 +417,131 @@ footer a:hover {
   font-weight: 700;
   color: var(--color-white-10);
   text-align: center;
+}
+
+/* components/Chatbot */
+.chatbot {
+  --position-bottom: 20px;
+  --position-right: 40px;
+}
+@media (max-width: 600px) {
+  .chatbot {
+    --position-right: 20px;
+  }
+}
+/* 팝업이 되는 챗봇 창 */
+.chatbot .chats {
+  border: 1px solid var(--color-black);
+  /* x축, y축, blur, color */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  right: var(--position-right);
+  /* 아래에서 20px 떨어진 곳에 위치 + chatbot을 처음시작할때의 동그라미 높이 + 버튼과의 간격 */
+  bottom: calc(var(--position-bottom) + 50px + 14px);
+  z-index: 1;
+  /* 최대로 늘어나는 구조에서 - position-right에 곱하기 2를 해주면 최대 너비 사용을 기준으로 한쪽 여백에 두배 만큼 공간을 가질 수 있음  */
+  width: calc(100% - var(--position-right) * 2);
+  max-width: 450px;
+  visibility: hidden;
+  background-color: var(--color-area);
+  transition-property: opacity, visibility;
+  transition-duration: 0.3s;
+  /* 왼쪽 상단부터 시계방향으로 */
+  border-radius: 20px 20px 4px 20px;
+  opacity: 0;
+}
+.chatbot.chatbot--on .chats {
+  visibility: visible;
+  opacity: 1;
+}
+.chatbot .chats ul {
+  display: flex;
+  gap: 14px;
+  flex-direction: column;
+  padding: 60px 20px 20px;
+  overflow: auto;
+  max-height: calc(100vh - 340px);
+  overscroll-behavior: contain;
+}
+.chatbot .chats li {
+  padding: 12px 18px;
+  position: relative;
+  max-width: 70%;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 20px;
+}
+.chatbot .chats li.assistant {
+  align-self: flex-start;
+  border-top-left-radius: 4px;
+  background-color: var(--color-white-5);
+  transform: translateX(10px);
+}
+.chatbot .chats li.assistant .photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: -10px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-white-5);
+  color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+.chatbot .chats li.assistant .the-loader {
+  width: 13px;
+  height: 13px;
+  border-width: 3px;
+}
+.chatbot .chats li.assistant .movie-title {
+  color: var(--color-primary);
+  cursor: pointer;
+}
+.chatbot .chats li.assistant .movie-title:hover {
+  text-decoration: underline;
+}
+.chatbot .chats li.user {
+  /* align-self는 부모요소에 적용되는 속성으로 자식요소의 정렬을 결정함 */
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  background-color: var(--color-primary);
+  color: var(--color-black);
+}
+.chatbot .input {
+  display: flex;
+  gap: 10px;
+  padding: 14px 20px 20px;
+  border-top: 1px solid var(--color-white-5);
+}
+.chatbot .input input {
+  flex-grow: 1;
+  padding: 0 20px;
+  border: none;
+  outline: none;
+  background-color: var(--color-white-5);
+  font-size: 14px;
+  color: var(--color-white);
+  border-radius: 4px 4px 4px 10px;
+}
+
+.chatbot .chat-starter {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  right: var(--position-right);
+  bottom: var(--position-bottom);
+  z-index: 1;
+}
+.chatbot .chat-starter .icon--open {
+  display: block;
+}
+.chatbot .chat-starter .icon--close {
+  display: none;
+}
+.chatbot.chatbot--on .chat-starter .icon--open {
+  display: none;
+}
+.chatbot.chatbot--on .chat-starter .icon--close {
+  display: block;
 }
