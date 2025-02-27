@@ -79,7 +79,6 @@ async function sendMessages(messages: OpenAI.ChatCompletionMessageParam[]) {
     model: "gpt-3.5-turbo",
   });
 
-  console.log("chatCompletion", chatCompletion);
   return chatCompletion.choices[0].message;
 }
 

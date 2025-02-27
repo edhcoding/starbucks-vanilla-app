@@ -1,5 +1,6 @@
 import { Component } from "../core/donghyeok";
 import chatStore, { sendMessages } from "../store/chatbot";
+import movieStore, { searchMovies } from "../store/movie";
 
 export default class Chatbot extends Component {
   constructor() {
@@ -28,7 +29,19 @@ export default class Chatbot extends Component {
               `
                   : ""
               }
-              ${msg.content}
+              ${
+                typeof msg.content === "string" // 타입 가드
+                  ? // (match, ko, en) 여기에서 match - 정규표현식에 매칭된 문자열, ko - 첫 번째 캡처 그룹(정규 표현식에서 첫 번째 소괄호 부분), en - 두 번째 캡처 그룹(정규 표현식에서 두 번째 소괄호 부분)
+                    /* html */ `
+                ${msg.content.replace(
+                  /{{(.*?)\/\/(.*?)}}/g,
+                  (match, ko, en) => /* html */ `
+                    <span class="movie-title" data-movie-title="${en}">${ko}</span>
+                  `
+                )}
+              `
+                  : ""
+              }
             </li>
           `
             )
@@ -114,5 +127,39 @@ export default class Chatbot extends Component {
 
     // 메시지 작성 후 다시 리렌더링 된 후 다시 포커스 해주기
     inputEl?.focus();
+
+    const movieTitleEls = this.el.querySelectorAll<HTMLElement>(".movie-title");
+    movieTitleEls.forEach((movieTitleEl) => {
+      movieTitleEl.addEventListener("click", () => {
+        const searchInputEl =
+          document.querySelector<HTMLInputElement>(".search input");
+
+        if (!searchInputEl) return;
+
+        // movieTitleEl 는 Element 타입임
+        // dataset 속성은 HTMLElement 타입에만 존재함
+        // 하지만 HTMLElement는 Element 타입의 하위 타입임
+        // dataset에 movieTitle 속성이 없으면 undefined를 반환하기 때문에 없을 경우도 처리해줘야 함
+        const title = movieTitleEl.dataset.movieTitle || "";
+        searchInputEl.value = title;
+        movieStore.state.searchText = title;
+        searchMovies(1);
+      });
+    });
   }
 }
+
+/**
+ * /{{(.*?)\/\/(.*?)}}/g
+ * 
+ * 패턴 구조
+- {{ : 시작 구분자로 중괄호 두 개를 사용
+- (.*?) : 첫 번째 캡처 그룹 - 한국어 영화 제목
+- // : 구분자로 슬래시 두 개 사용
+- (.*?) : 두 번째 캡처 그룹 - 영어 영화 제목
+- }} : 끝 구분자로 중괄호 두 개를 사용
+- g : 전역 플래그 (문자열 전체에서 모든 매칭을 찾음)
+  * 세부 설명:
+- .*? : 임의의 문자(.)를 0개 이상(0개 이상 매칭) 찾되, 최소한으로 매칭(게으른 매칭, ?)
+- () : 캡처 그룹을 만들어 나중에 참조할 수 있게 함
+ */
