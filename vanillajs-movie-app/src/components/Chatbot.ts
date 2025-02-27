@@ -64,7 +64,13 @@ export default class Chatbot extends Component {
       chatStore.state.chatText = inputEl.value;
     });
     inputEl?.addEventListener("keydown", (event: Event) => {
-      if (event instanceof KeyboardEvent && event.key === "Enter") {
+      // 한글 입력의 경우 이벤트가 2번 발생할 수 있음, CJK 문자는 브라우저가 분석하는 과정이 추가로 들어가기 때문에 이벤트가 2번 발생할 수 있음
+      // isComposing 을 사용해서 분석하고 있는지 없는지 확인해서 이벤트 처리 횟수를 줄여줄 수 있음
+      if (
+        event instanceof KeyboardEvent &&
+        event.key === "Enter" &&
+        !event.isComposing
+      ) {
         sendMessages();
       }
     });
@@ -99,5 +105,14 @@ export default class Chatbot extends Component {
     chatsEl?.addEventListener("click", (event: Event) => {
       event.stopPropagation();
     });
+
+    // 메시지 작성할때마다 최하단에 스크롤 이동
+    const messageListEl = this.el.querySelector(".chats ul");
+    // scrollTo(x, y)
+    // scrollHeight - 스크롤 바 전체 높이
+    messageListEl?.scrollTo(0, messageListEl.scrollHeight || 0);
+
+    // 메시지 작성 후 다시 리렌더링 된 후 다시 포커스 해주기
+    inputEl?.focus();
   }
 }
